@@ -1,0 +1,122 @@
+﻿<!--
+    // NO LICENSE
+    // ==========
+    // There is no copyright, you can use and abuse this source without limit.
+    // There is no warranty, you are responsible for the consequences of your use of this source.
+    // There is no burden, you do not need to acknowledge this source in your use of this source.
+    -->
+<Window
+    x:Class="guidgen.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:guidgen"
+    mc:Ignorable="d"
+    Title="GuidGen"
+    Height="350"
+    Width="525">
+    <Window.InputBindings>
+        <KeyBinding
+            Modifiers="Control"
+            Key="N"
+            Command="{Binding NewGuidCommand}" />
+        <KeyBinding
+            Modifiers="Control"
+            Key="C"
+            Command="{Binding CopyGuidCommand}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <local:GuidConverter x:Key="GuidConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Column="0"
+            Grid.Row="0"
+            Margin="8"
+            Text="{Binding CurrentGuid}" />
+        <Button
+            Grid.Column="1"
+            Grid.Row="0"
+            Margin="8"
+            Content="Copy"
+            Command="{Binding CopyGuidCommand}" />
+        <Button
+            Grid.Column="2"
+            Grid.Row="0"
+            Margin="8"
+            Content="New"
+            Command="{Binding NewGuidCommand}" />
+        <GroupBox
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Grid.Row="1"
+            Margin="8"
+            Header="Style">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <RadioButton
+                    Grid.Row="0"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding Style1}"
+                    Content="{Binding GuidViewModel, Converter={StaticResource GuidConverter}, ConverterParameter=N}" />
+                <RadioButton
+                    Grid.Row="1"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding Style2}"
+                    Content="{Binding GuidViewModel, Converter={StaticResource GuidConverter}, ConverterParameter=D}" />
+                <RadioButton
+                    Grid.Row="2"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding Style3}"
+                    Content="{Binding GuidViewModel, Converter={StaticResource GuidConverter}, ConverterParameter=B}" />
+                <RadioButton
+                    Grid.Row="3"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding Style4}"
+                    Content="{Binding GuidViewModel, Converter={StaticResource GuidConverter}, ConverterParameter=P}" />
+                <RadioButton
+                    Grid.Row="4"
+                    Margin="8"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    IsChecked="{Binding Style5}"
+                    Content="{Binding GuidViewModel, Converter={StaticResource GuidConverter}, ConverterParameter=X}" />
+            </Grid>
+        </GroupBox>
+        <CheckBox
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            Margin="8"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Content="Uppercase"
+            IsChecked="{Binding IsUppercase}" />
+    </Grid>
+</Window>
